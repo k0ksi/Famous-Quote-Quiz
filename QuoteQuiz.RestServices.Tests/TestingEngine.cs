@@ -106,7 +106,7 @@
             return userSession;
         }
 
-        public static HttpResponseMessage SubmitPersonHttpPost(string name)
+        public static HttpResponseMessage CreatePersonHttpPost(string name)
         {
             var postContent = new FormUrlEncodedContent(new[]
             {
@@ -118,7 +118,7 @@
             return httpResponse;
         }
 
-        public static HttpResponseMessage SubmitQuoteHttpPost(string text, string personName)
+        public static HttpResponseMessage CreateQuoteHttpPost(string text, string personName)
         {
             var postContent = new FormUrlEncodedContent(new[]
             {

@@ -6,8 +6,6 @@
 
         public string Text { get; set; }
 
-        public int PersonId { get; set; }
-
         public string PersonName { get; set; }
     }
 }

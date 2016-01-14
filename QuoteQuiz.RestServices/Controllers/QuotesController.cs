@@ -12,9 +12,9 @@
     {
         private const int MinQuoteId = 1;
 
-        // GET api/quotes/quote
+        // GET api/quotes/randomQuote
         [HttpGet]
-        [Route("quotes/quote")]
+        [Route("quotes/randomQuote")]
         public IHttpActionResult GetRandomQuote()
         {
             var random = new Random();
@@ -28,6 +28,31 @@
                 .FirstOrDefault(q => q.Id == randomId);
 
             return this.Ok(quote);
+        }
+
+        // GET api/quotes/{quoteId}
+        [HttpGet]
+        [Route("quotes/{quoteId}")]
+        public IHttpActionResult GetQuote(int quoteId)
+        {
+            var quote = this.Data.Quotes
+                .All()
+                .Select(QuoteViewModel.Create)
+                .FirstOrDefault(q => q.Id == quoteId);
+
+            return this.Ok(quote);
+        }
+
+        // GET api/quotes/all
+        [HttpGet]
+        [Route("quotes/all")]
+        public IHttpActionResult ListAllQuotes()
+        {
+            var quotes = this.Data.Quotes
+                .All()
+                .Select(QuoteViewModel.Create);
+
+            return this.Ok(quotes);
         }
 
         // POST api/quotes

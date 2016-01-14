@@ -1,18 +1,30 @@
-﻿using QuoteQuiz.RestServices.Models.BindingModels;
-
-namespace QuoteQuiz.RestServices.Controllers
+﻿namespace QuoteQuiz.RestServices.Controllers
 {
     using System;
     using System.Linq;
     using System.Web.Http;
     using Models.ViewModels;
     using QuoteQuiz.Models;
+    using Models.BindingModels;
     
     [RoutePrefix("api")]
     public class PeopleController : BaseApiController
     {
         private const int MinPersonId = 1;
         
+        // GET api/people/all
+        [HttpGet]
+        [Route("people/all")]
+        public IHttpActionResult ListAllPeople()
+        {
+            var people = this.Data.People
+                .All()
+                .OrderByDescending(b => b.Id)
+                .Select(PersonViewModel.Create);
+
+            return this.Ok(people);
+        }
+
         // GET api/people/person
         [HttpGet]
         [Route("people/person")]
@@ -46,7 +58,7 @@ namespace QuoteQuiz.RestServices.Controllers
 
         // GET api/people/person/{quoteId}/{secondPersonNotAuthorId}
         [HttpGet]
-        [Route("people/person/{quoteId}/{secondPersonNotAuthorId}")]
+        [Route("people/person/{quoteId}/{secondPersonNotAuthorId?}")]
         public IHttpActionResult GetRandomPersonNotAuthorOfQuote(int quoteId, int? secondPersonNotAuthorId = 0)
         {
             var quote = GetQuoteById(quoteId);
