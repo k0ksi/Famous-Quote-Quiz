@@ -33,7 +33,7 @@
         // POST api/quotes
         [HttpPost]
         [Route("quotes")]
-        public IHttpActionResult CreateQuote([FromBody] QuoteBindingModel model)
+        public IHttpActionResult CreateQuote(QuoteBindingModel model)
         {
             if (model == null)
             {

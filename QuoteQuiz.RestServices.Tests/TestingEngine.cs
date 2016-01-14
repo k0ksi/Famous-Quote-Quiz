@@ -1,13 +1,11 @@
 ﻿namespace QuoteQuiz.RestServices.Tests
 {
-    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using EntityFramework.Extensions;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Web.Http;
     using Microsoft.Owin.Testing;
     using Owin;
@@ -108,7 +106,7 @@
             return userSession;
         }
 
-        public static HttpResponseMessage CreatePersonHttpPost(string name)
+        public static HttpResponseMessage SubmitPersonHttpPost(string name)
         {
             var postContent = new FormUrlEncodedContent(new[]
             {
@@ -120,12 +118,12 @@
             return httpResponse;
         }
 
-        public static HttpResponseMessage SubmitQuoteHttpPost(string text, string authorName)
+        public static HttpResponseMessage SubmitQuoteHttpPost(string text, string personName)
         {
             var postContent = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("text", text),
-                new KeyValuePair<string, string>("authorName", authorName)
+                new KeyValuePair<string, string>("personName", personName)
             });
 
             var httpResponse = TestingEngine.HttpClient.PostAsync("/api/quotes", postContent).Result;

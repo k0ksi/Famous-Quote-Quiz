@@ -1,28 +1,23 @@
-﻿using System.Net;
-using System.Net.Http;
-using QuoteQuiz.RestServices.Tests.Models;
-
-namespace QuoteQuiz.RestServices.Tests.Controllers
+﻿namespace QuoteQuiz.RestServices.Tests.Controllers
 {
+    using System.Net;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class PeopleControllerTests
     {
         [TestMethod]
-        public void CreateQuote_GetQuoteAuthor_ShouldReturnCorrectAuthorName()
+        public void CreateQuoteAndPerson_GetQuoteAuthor_ShouldReturnCorrectAuthorName()
         {
             TestingEngine.CleanDatabase();
-            var quote = new QuoteModel()
-            {
-                Text = "If we knew what it was we were doing, it would not be called research, would it?"
-            };
+            var text = "Quiet people have the loudest minds.";
+            var personName = "Stephen Hawking";
 
-            var httpResponse = TestingEngine.HttpClient.GetAsync("/api/quotes").Result;
-            Assert.AreEqual(HttpStatusCode.OK, httpResponse.StatusCode);
+            var createPersonHttpPostResponse = TestingEngine.SubmitPersonHttpPost(personName);
+            Assert.AreEqual(HttpStatusCode.Created, createPersonHttpPostResponse.StatusCode);
 
-            var quoteFromService = httpResponse.Content.ReadAsAsync<QuoteModel>().Result;
-            Assert.IsTrue(quoteFromService.Id != 0);
-        }         
+            var httpPostResponse = TestingEngine.SubmitQuoteHttpPost(text, personName);
+            Assert.AreEqual(HttpStatusCode.Created, httpPostResponse.StatusCode);
+        }
     }
 }
