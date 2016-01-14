@@ -8,6 +8,8 @@
     [TestClass]
     public class ValuesControllerTest
     {
+        // TODO Delete Class
+
         [TestMethod]
         public void Get()
         {

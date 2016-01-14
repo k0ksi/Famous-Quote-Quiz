@@ -7,6 +7,8 @@
     [TestClass]
     public class HomeControllerTest
     {
+        //TODO Delete Class
+
         [TestMethod]
         public void Index()
         {
