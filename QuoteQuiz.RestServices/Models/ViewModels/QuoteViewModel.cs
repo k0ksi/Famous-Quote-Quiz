@@ -6,6 +6,8 @@
 
     public class QuoteViewModel
     {
+        public int Id { get; set; }
+
         public string Text { get; set; }
 
         public string PersonName { get; set; }
@@ -16,6 +18,7 @@
             {
                 return quote => new QuoteViewModel()
                 {
+                    Id = quote.Id,
                     Text = quote.Text,
                     PersonName = quote.Person.Name
                 };
