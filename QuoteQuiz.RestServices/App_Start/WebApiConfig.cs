@@ -1,6 +1,7 @@
 ﻿namespace QuoteQuiz.RestServices
 {
     using System.Web.Http;
+    using System.Linq;
     using Microsoft.Owin.Security.OAuth;
 
     public static class WebApiConfig
@@ -20,6 +21,9 @@
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
         }
     }
 }
