@@ -20,8 +20,8 @@
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Text/css").Include(
-                      "~/Text/bootstrap.css",
-                      "~/Text/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/site.css"));
         }
     }
 }

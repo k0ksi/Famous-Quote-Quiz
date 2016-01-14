@@ -9,6 +9,8 @@
 
         IRepository<Person> People { get; } 
 
-        IRepository<Quote> Quotes { get; } 
+        IRepository<Quote> Quotes { get; }
+
+        void SaveChanges();
     }
 }

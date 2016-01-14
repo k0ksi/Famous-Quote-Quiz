@@ -22,9 +22,9 @@
 
         public IRepository<Quote> Quotes => this.GetRepository<Quote>();
 
-        public int SaveChanges()
+        public void SaveChanges()
         {
-            return this.context.SaveChanges();
+            this.context.SaveChanges();
         }
 
         private IRepository<T> GetRepository<T>() where T : class

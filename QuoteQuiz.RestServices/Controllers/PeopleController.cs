@@ -1,4 +1,6 @@
-﻿namespace QuoteQuiz.RestServices.Controllers
+﻿using QuoteQuiz.RestServices.Models.BindingModels;
+
+namespace QuoteQuiz.RestServices.Controllers
 {
     using System;
     using System.Linq;
@@ -71,6 +73,34 @@
                 .FirstOrDefault(a => a.Id == randomPersonId);
 
             return this.Ok(person);
+        }
+
+        // POST api/people
+        [HttpPost]
+        [Route("people")]
+        public IHttpActionResult CreatePerson([FromBody] PersonBindingModel model)
+        {
+            if (model == null)
+            {
+                return this.BadRequest("Missing person data.");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var person = new Person()
+            {
+                Name = model.Name
+            };
+            this.Data.People.Add(person);
+            this.Data.SaveChanges();
+
+            return this.CreatedAtRoute(
+                "DefaultApi",
+                new { controller = "people", id = person.Id },
+                new { person.Id, PersonName = person.Name, Message = "Person created." });
         }
 
         private int GetLastPersonId()
