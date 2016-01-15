@@ -43,7 +43,7 @@ var
 	// For `typeof xmlNode.method` instead of `xmlNode.method !== undefined`
 	core_strundefined = typeof undefined,
 
-	// Use the correct document accordingly with window argument (sandbox)
+	// Use the correctAnswer document accordingly with window argument (sandbox)
 	location = window.location,
 	document = window.document,
 	docElem = document.documentElement,
@@ -904,7 +904,7 @@ jQuery.extend({
 		return ( new Date() ).getTime();
 	},
 
-	// A method for quickly swapping in/out CSS properties to get correct calculations.
+	// A method for quickly swapping in/out CSS properties to get correctAnswer calculations.
 	// Note: this method belongs to the css module but it's needed here for the support module.
 	// If support gets modularized, this method should be moved back to the css module.
 	swap: function( elem, options, callback, args ) {
@@ -4493,7 +4493,7 @@ jQuery.extend({
 	propHooks: {
 		tabIndex: {
 			get: function( elem ) {
-				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
+				// elem.tabIndex doesn't always return the correctAnswer value when it hasn't been explicitly set
 				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
 				// Use proper attribute retrieval(#12072)
 				var tabindex = jQuery.find.attr( elem, "tabindex" );
@@ -5277,7 +5277,7 @@ jQuery.event = {
 			noBubble: true
 		},
 		focus: {
-			// Fire native event if possible so blur/focus sequence is correct
+			// Fire native event if possible so blur/focus sequence is correctAnswer
 			trigger: function() {
 				if ( this !== safeActiveElement() && this.focus ) {
 					try {
@@ -5384,7 +5384,7 @@ jQuery.Event = function( src, props ) {
 		this.type = src.type;
 
 		// Events bubbling up the document may have been marked as prevented
-		// by a handler lower down the tree; reflect the correct value.
+		// by a handler lower down the tree; reflect the correctAnswer value.
 		this.isDefaultPrevented = ( src.defaultPrevented || src.returnValue === false ||
 			src.getPreventDefault && src.getPreventDefault() ) ? returnTrue : returnFalse;
 
@@ -6430,7 +6430,7 @@ function fixCloneNodeIssues( src, dest ) {
 	} else if ( nodeName === "option" ) {
 		dest.defaultSelected = dest.selected = src.defaultSelected;
 
-	// IE6-8 fails to set the defaultValue to the correct value when
+	// IE6-8 fails to set the defaultValue to the correctAnswer value when
 	// cloning other types of input fields
 	} else if ( nodeName === "input" || nodeName === "textarea" ) {
 		dest.defaultValue = src.defaultValue;
@@ -7301,7 +7301,7 @@ function css_defaultDisplay( nodeName ) {
 			iframe.detach();
 		}
 
-		// Store the correct default display
+		// Store the correctAnswer default display
 		elemdisplay[ nodeName ] = display;
 	}
 
@@ -8093,7 +8093,7 @@ jQuery.extend({
 			}
 		}
 
-		// Set the correct header, if data is being sent
+		// Set the correctAnswer header, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
 			jqXHR.setRequestHeader( "Text-Type", s.contentType );
 		}
@@ -9031,7 +9031,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ name ];
 
 			// not quite $.extend, this wont overwrite keys already present.
-			// also - reusing 'index' from above because we have the correct "name"
+			// also - reusing 'index' from above because we have the correctAnswer "name"
 			for ( index in value ) {
 				if ( !( index in props ) ) {
 					props[ index ] = value[ index ];
@@ -9660,7 +9660,7 @@ jQuery.fn.extend({
 			// Get *real* offsetParent
 			offsetParent = this.offsetParent();
 
-			// Get correct offsets
+			// Get correctAnswer offsets
 			offset = this.offset();
 			if ( !jQuery.nodeName( offsetParent[ 0 ], "html" ) ) {
 				parentOffset = offsetParent.offset();

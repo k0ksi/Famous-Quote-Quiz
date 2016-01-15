@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url("images/background.jpg");
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,4 +15,97 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#wrapper {
+    width: 270px;
+    height: 568px;
+}
+
+#gray-header {
+    color: rgb(98, 108, 105);
+}
+
+#pink-background {
+    padding-top: 20px;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+    -ms-border-radius: 12px;
+    border-radius: 12px;
+    background-color: rgb(255, 4, 140);
+}
+
+#quote-text {
+    margin-left: 14px;
+    margin-right: 18px;
+    color: white;
+}
+
+#gray-name {
+    margin-top: 20px;
+    text-align: center;
+    color: rgb(105, 108, 105);
+    margin-bottom: 40px;
+}
+
+.float-left-left {
+    float: left;
+}
+
+.float-right-right {
+    float: right;
+}
+
+.button-binary {
+    width: 49px;
+    height: 33px;
+}
+
+.button-binary-red {
+    width: 49px;
+    height: 33px;
+    background-color: rgb(255, 4, 50);
+}
+
+.button-binary-red:hover {
+    width: 49px;
+    height: 33px;
+    background-color: rgb(235, 4, 40);
+}
+
+.gray-box {
+    width: 80%;
+    -ms-border-radius: 12px;
+    border-radius: 6px;
+    background-color: rgb(99, 101, 99);
+    margin: 0 auto;
+    margin-bottom: 9px;
+    text-decoration: none;
+}
+
+.gray-box:hover {
+    text-decoration: none;
+}
+
+.white-person-name {
+    color: white;
+}
+
+.white-person-name:hover {
+    color: lightgreen;
+    text-decoration: none;
+}
+
+#green-name {
+    color: #228b22;
+    text-align: center;
+}
+
+.button-choice {
+    width: 92px;
+    height: 36px;
+}
+
+.text-align-centered {
+    text-align: center;
 }

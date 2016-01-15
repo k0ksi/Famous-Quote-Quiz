@@ -1,0 +1,95 @@
+﻿@model QuoteQuiz.RestServices.Models.ViewModels.MultipleAnswersPlayViewModel
+
+@{
+    ViewBag.Title = "Famous Quote Quiz";
+}
+
+<p id="author" class="hidden">
+    @Model.Quote.PersonName
+</p>
+<h2>Famous Quote Quiz</h2>
+<div id="wrapper">
+    <h4 id="gray-header">Who Said It?</h4>
+    <div id="pink-background">
+        <p id="quote-text">
+            "@Model.Quote.Text "
+        </p>
+    </div>
+    <div id="answer-box">
+        @{
+            var firstChoice = Model.People[0].Name;
+            var secondChoice = Model.People[1].Name;
+            var thirdChoice = Model.People[2].Name;
+            var correctChoice = 0;
+            for (int i = 0; i < Model.People.Count; i++)
+            {
+                var person = Model.People[i];
+                if (person.Name.Equals(Model.Quote.PersonName))
+                {
+                    correctChoice = i + 1;
+                }
+            }
+        }
+        <p id="correct-choice" class="hidden">
+            @correctChoice
+        </p>
+
+        <div class="gray-box">
+            <a href="#" class="white-person-name" id="1">
+                &nbsp;-> @firstChoice
+            </a>
+        </div>
+        <div class="gray-box">
+            <a href="#" class="white-person-name" id="2">
+                &nbsp;-> @secondChoice
+            </a>
+        </div>
+        <div class="gray-box">
+            <a href="#" class="white-person-name" id="3">
+                &nbsp;-> @thirdChoice
+            </a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script>
+        function removeA(arr) {
+            var what, a = arguments, L = a.length, ax;
+            while (L > 1 && arr.length) {
+                what = a[--L];
+                while ((ax = arr.indexOf(what)) !== -1) {
+                    arr.splice(ax, 1);
+                }
+            }
+            return arr;
+        }
+
+        var quoteAuthor = document.getElementById('author').innerHTML.trim();
+        var correctOption = document.getElementById('correct-choice').innerHTML.trim();
+        var correctChoice = document.getElementById(correctOption).addEventListener("click", correctOptionClicked, false);
+        var array = ['1', '2', '3'];
+        removeA(array, correctOption);
+        var firstIncorrect = array[0];
+        var firstIncorrectChoice = document.getElementById(firstIncorrect).addEventListener("click", incorrectOptionClicked, false);
+        var secondIncorrect = array[1];
+        var secondIncorrectChoice = document.getElementById(secondIncorrect).addEventListener("click", incorrectOptionClicked, false);
+
+        function correctOptionClicked() {
+            swal("Correct!", 'This quote is from ' + quoteAuthor + '.', "success");
+            replaceAnswerBox();
+        }
+
+        function incorrectOptionClicked() {
+            sweetAlert("Sorry, you are wrong!", 'This quote is from ' + quoteAuthor + '.', "error");
+            replaceAnswerBox();
+        }
+
+        function replaceAnswerBox() {
+            document.getElementById('answer-box').innerHTML = '<h4 id="green-name">' + quoteAuthor + '</h4><div class="text-align-centered">' +
+                '@Html.ActionLink("Next", "PlayMultiple", "Play", new { @class = "button-choice btn btn-primary gray-x display-inline-block margin-top-short" })</div>';
+        }
+    </script>
+}

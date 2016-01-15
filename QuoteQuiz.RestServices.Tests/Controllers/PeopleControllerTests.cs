@@ -31,7 +31,7 @@
                 Assert.AreEqual(HttpStatusCode.Created, httpPostResponse.StatusCode);
             }
 
-            // Assert -> list the people and assert their count, order and content are correct
+            // Assert -> list the people and assert their count, order and content are correctAnswer
             var httpResponse = TestingEngine.HttpClient.GetAsync("/api/people/all").Result;
             Assert.AreEqual(HttpStatusCode.OK, httpResponse.StatusCode);
 
@@ -77,7 +77,7 @@
             var personFromService = peopleFromService
                 .FirstOrDefault(p => p.Name == personName);
             
-            // Assert -> ensure the quote author is correct
+            // Assert -> ensure the quote author is correctAnswer
             Assert.AreEqual(personFromService.Name, quoteFromService.PersonName);
         }
     }

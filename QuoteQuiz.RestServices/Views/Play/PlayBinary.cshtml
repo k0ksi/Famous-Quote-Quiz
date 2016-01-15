@@ -1,0 +1,72 @@
+﻿@model QuoteQuiz.RestServices.Models.ViewModels.BinaryPlayViewModel
+
+@{
+    ViewBag.Title = "Famous Quote Quiz";
+}
+
+<p id="author" class="hidden">
+    @Model.Quote.PersonName
+</p>
+<h2>Famous Quote Quiz</h2>
+<div id="wrapper">
+    <h4 id="gray-header">Who Said It?</h4>
+    <div id="pink-background">
+        <p id="quote-text">
+            "@Model.Quote.Text "
+        </p>
+    </div>
+    <div id="answer-box">
+        <h5 id="gray-name">
+            @Model.Person.Name
+        </h5>
+        <script>
+            var author = document.getElementById('gray-name').innerHTML.trim();
+        </script>
+        <div>
+            @if (Model.Correct)
+            {
+                <button id="yes" class="btn btn-success float-left-left button-binary" onclick="correctAnswer();">Yes</button>
+                <button id="no" class="btn btn-danger float-right-right button-binary button-binary-red" onclick="wrongAnswer();">No</button>
+            }
+            else
+            {
+                <button id="yes" class="btn btn-success float-left-left button-binary" onclick="wrongAnswer();">Yes</button>
+                <button id="no" class="btn btn-danger float-right-right button-binary button-binary-red" onclick="correctAnswer();">No</button>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script>
+        var quoteAuthor = document.getElementById('author').innerHTML.trim();
+        var correct = @Model.Correct;
+
+        function correctAnswer() {
+            if (correct) {
+                swal("Correct!", 'This quote is from ' + author + '.', "success");
+                replaceAnswerBox();
+            } else {
+                swal("Correct!", 'This quote is from ' + quoteAuthor + '.', "success");
+                replaceAnswerBox();
+            }
+        }
+
+        function wrongAnswer() {
+            if (correct) {
+                sweetAlert("Sorry, you are wrong!", 'This quote is from ' + quoteAuthor + '.', "error");
+                replaceAnswerBox();
+            } else {
+                sweetAlert("Sorry, you are wrong!", 'This quote is from ' + quoteAuthor + '.', "error");
+                replaceAnswerBox();
+            }
+        }
+
+        function replaceAnswerBox() {
+            document.getElementById('answer-box').innerHTML = '<h4 id="green-name">' + quoteAuthor + '</h4><div class="text-align-centered">' +
+                '@Html.ActionLink("Next", "PlayBinary", "Play", new { @class = "button-choice btn btn-primary gray-x display-inline-block margin-top-short" })</div>';
+        }
+    </script>
+}

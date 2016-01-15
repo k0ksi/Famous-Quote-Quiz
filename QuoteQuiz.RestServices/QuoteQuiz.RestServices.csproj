@@ -53,6 +53,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Testing">
+      <HintPath>..\packages\Microsoft.Owin.Testing.3.0.1\lib\net45\Microsoft.Owin.Testing.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -210,8 +213,8 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +222,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BindingModels\PersonBindingModel.cs" />
     <Compile Include="Models\BindingModels\QuoteBindingModel.cs" />
+    <Compile Include="Models\ViewModels\BinaryPlayViewModel.cs" />
+    <Compile Include="Models\ViewModels\MultipleAnswersPlayViewModel.cs" />
     <Compile Include="Models\ViewModels\PersonViewModel.cs" />
     <Compile Include="Models\ViewModels\QuoteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +237,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\background.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -270,6 +276,8 @@
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -279,6 +287,48 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert-master\.gitignore" />
+    <Content Include="Scripts\sweetalert-master\dev\gulpfile-wrap-template.js" />
+    <Content Include="Scripts\sweetalert-master\dev\ie9.css" />
+    <Content Include="Scripts\sweetalert-master\dev\loader-animation.css" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\default-params.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\handle-click.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\handle-dom.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\handle-key.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\handle-swal-dom.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\injected-html.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\set-params.js" />
+    <Content Include="Scripts\sweetalert-master\dev\modules\utils.js" />
+    <Content Include="Scripts\sweetalert-master\dev\sweetalert.es6.js" />
+    <Content Include="Scripts\sweetalert-master\dist\sweetalert-dev.js" />
+    <Content Include="Scripts\sweetalert-master\dist\sweetalert.css" />
+    <Content Include="Scripts\sweetalert-master\dist\sweetalert.min.js" />
+    <Content Include="Scripts\sweetalert-master\example\example.css" />
+    <Content Include="Scripts\sweetalert-master\example\images\logo_big%402x.png" />
+    <Content Include="Scripts\sweetalert-master\example\images\logo_big.png" />
+    <Content Include="Scripts\sweetalert-master\example\images\logo_small%402x.png" />
+    <Content Include="Scripts\sweetalert-master\example\images\logo_small.png" />
+    <Content Include="Scripts\sweetalert-master\example\images\te-logo-small.svg" />
+    <Content Include="Scripts\sweetalert-master\example\images\thumbs-up.jpg" />
+    <Content Include="Scripts\sweetalert-master\example\images\vs_icon%402x.png" />
+    <Content Include="Scripts\sweetalert-master\example\images\vs_icon.png" />
+    <Content Include="Scripts\sweetalert-master\gulpfile.js" />
+    <Content Include="Scripts\sweetalert-master\index.html" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\default-params.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\handle-click.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\handle-dom.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\handle-key.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\handle-swal-dom.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\injected-html.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\set-params.js" />
+    <Content Include="Scripts\sweetalert-master\lib\modules\utils.js" />
+    <Content Include="Scripts\sweetalert-master\lib\sweetalert.js" />
+    <Content Include="Scripts\sweetalert-master\sweetalert.gif" />
+    <Content Include="Scripts\sweetalert-master\test\index.html" />
+    <Content Include="Scripts\sweetalert-master\test\tests.js" />
+    <Content Include="Scripts\sweetalert-master\themes\facebook\facebook.css" />
+    <Content Include="Scripts\sweetalert-master\themes\google\google.css" />
+    <Content Include="Scripts\sweetalert-master\themes\twitter\twitter.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,6 +344,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Play\ChooseMode.cshtml" />
+    <Content Include="Views\Play\PlayBinary.cshtml" />
+    <Content Include="Views\Play\PlayMultiple.cshtml" />
+    <Content Include="Scripts\sweetalert-master\.editorconfig" />
+    <Content Include="Scripts\sweetalert-master\.jshintrc" />
+    <Content Include="Scripts\sweetalert-master\.travis.yml" />
+    <Content Include="Scripts\sweetalert-master\bower.json" />
+    <Content Include="Scripts\sweetalert-master\dev\sweetalert.scss" />
+    <Content Include="Scripts\sweetalert-master\example\example.scss" />
+    <Content Include="Scripts\sweetalert-master\LICENSE" />
+    <Content Include="Scripts\sweetalert-master\package.json" />
+    <Content Include="Scripts\sweetalert-master\README.md" />
+    <Content Include="Scripts\sweetalert-master\themes\facebook\facebook.scss" />
+    <Content Include="Scripts\sweetalert-master\themes\google\google.scss" />
+    <Content Include="Scripts\sweetalert-master\themes\twitter\twitter.scss" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
